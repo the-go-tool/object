@@ -119,16 +119,56 @@ func (o Object) IsFloat() bool {
 	return false
 }
 
-// IsNumberStrict - check that the object value is one of number type.
-// It includes all integer and float types. To determine which
-// one - use IsIntStrict or IsFloatStrict
-func (o Object) IsNumberStrict() bool {
-	return o.IsIntStrict() || o.IsFloatStrict()
+// IsStringStrict - check that the object is string.
+func (o Object) IsStringStrict() bool {
+	return o.IsExists() && o.val.Kind() == reflect.Map
 }
 
-// IsNumber - check that the object value is one of number type or can be cast.
-// It includes all integer and float types. To determine which
-// one - use IsInt or IsFloat
-func (o Object) IsNumber() bool {
-	return o.IsInt() || o.IsFloat()
+// IsString - check that the object is string or can be cast.
+// Simple types like numbers always can be cast. If you would like
+// to get something more complicated - use ToJson or similar serialization.
+// If the required type serialization isn't presented - use ToValue and
+// pass it to your favourite serializer manually.
+func (o Object) IsString() bool {
+	if !o.IsExists() {
+		return false
+	}
+	if o.IsStringStrict() || o.IsFloatStrict() {
+		return true
+	}
+	return false
+}
+
+// IsBoolStrict - check that the object is boolean.
+func (o Object) IsBoolStrict() bool {
+	return o.IsExists() && o.val.Kind() == reflect.Bool
+}
+
+// IsBool - check that the object is boolean or can be cast.
+// For string truthy values are: "true", "yes", "on"
+// and if it can be cast to number - any except zero.
+// For numbers truthy values any except zero.
+//TODO: Make the realisation and tests
+func (o Object) IsBool() bool {
+	if !o.IsExists() {
+		return false
+	}
+	if o.IsBoolStrict() {
+		return true
+	}
+	switch o.val.Kind() {
+	case reflect.Float32, reflect.Float64:
+		if float64(int64(o.val.Float())) == o.val.Float() {
+			return true
+		}
+	case reflect.String:
+		num, err := strconv.ParseFloat(o.val.String(), 64)
+		if err != nil {
+			return false
+		}
+		if float64(int64(num)) == num {
+			return true
+		}
+	}
+	return false
 }

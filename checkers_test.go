@@ -29,7 +29,7 @@ func TestObject_IsExists(t *testing.T) {
 	})
 
 	t.Run("index not exists at string", func(t *testing.T) {
-		if object.Get("field").Index(50).IsExists() {
+		if object.Get("field").GetIndex(50).IsExists() {
 			t.Fatalf(`expect false`)
 		}
 	})

@@ -1,7 +1,14 @@
-# Object
-> Tool to work with unspecified-scheme objects (like unmarshalled json, yaml, etc.)
+[![Join the chat at https://gitter.im/the-go-tool-object/general](https://badges.gitter.im/the-got-tool-object.svg)](https://gitter.im/the-go-tool-object?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Go documentation](https://img.shields.io/badge/GoDoc-object-blue)](https://pkg.go.dev/github.com/the-go-tool/object)
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/the-go-tool/object)
 
-> ❤️ I Need in Your Feedback! Together we'll make a better tool!  
+# 📦 Object
+_Tool to work through unspecified-scheme objects (like unmarshalled json, yaml, etc.)_
+
+> 🚧 Note, this tool is still under construction.
+> **<span style="color: yellow">Not production ready!</span>**
+
+> ❤️ Need in Your Feedback! Together we'll make a better tool!  
 > Please, make an **issue or PR if** you found
 > **inconsistent** behavior, **errors** or **missed test-cases**.
 > Or just [leave a comment at gitter](https://gitter.im/the-go-tool-object/community)
@@ -21,14 +28,19 @@ type-casting or use reflection. This is a hard way with tons of code.
 Usually, nobody understands how it works and what happens. Even the
 developer of this part of code after time.
 
-This tool tries to help. It is inspired by JavaScript and their API to manipulate objects.
+This tool tries to help. It is inspired by JavaScript and their API to
+manipulate objects.
 
-# Install
+Goal is to make very comfortable tool.
+
+## ⚙️ Install
 `go get -u github.com/the-go-tool/object`
 
-# Usage
+## 📚 Usage
 If you familiar with JavaScript, you already familiar with this tool's methods.
 Most of these methods constructed to work in chain-mode.
+
+> 🚧 It's a draft. Actually, this module isn't ready.
 
 A bit of code to start:
 ```go
@@ -66,5 +78,10 @@ func main() {
 	obj.Get("a").Get("b").Entries() // [{Key: Object("b"), Value: Object("c")}, ...]
 	
 	obj.GetPath("e[1]").Int() // 2 - JavaScript-like syntax
+	
+	// ==========
+	
+	// JOQL syntax. JavaScript Object Query Language:
+	yes := object.NewFromData(source).Path(`a.b[5].c["data"].d`).ToBool()
 }
 ```

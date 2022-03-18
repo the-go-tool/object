@@ -11,6 +11,7 @@ const (
 	ErrorFieldNotFound   = "field name not found"
 	ErrorIndexParse      = "index can't be parsed"
 	ErrorIndexRange      = "index out of range"
+	ErrorDataParse       = "data can't be parsed"
 )
 
 // Error - objects manipulation error
