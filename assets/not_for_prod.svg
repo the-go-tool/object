@@ -1,0 +1,20 @@
+<svg
+        xmlns='http://www.w3.org/2000/svg'
+        height="30"
+        width="500"
+        text-anchor="middle"
+        font-family="sans-serif"
+>
+    <rect x="0" y="0"
+          width="500" height="30"
+          rx="4" ry="4"
+          fill="#F44336"/>
+    <text
+            x="250"
+            y="24"
+            fill="#FFFFFF"
+            font-size="24px"
+    >
+        Not For Production Yet
+    </text>
+</svg>

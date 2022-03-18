@@ -5,8 +5,9 @@
 # 📦 Object
 _Tool to work through unspecified-scheme objects (like unmarshalled json, yaml, etc.)_
 
-> 🚧 Note, this tool is still under construction.
-> **<span style="color: yellow">Not production ready!</span>**
+<p align="center">
+    <img alt="" src="assets/not_for_prod.svg"/>
+</p>
 
 > ❤️ Need in Your Feedback! Together we'll make a better tool!  
 > Please, make an **issue or PR if** you found
